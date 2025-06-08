@@ -10,22 +10,6 @@ const markers = [...Array(50).keys()].map((item) => ({
   },
 }));
 
-// const CustomMarker = memo(
-//   ({ coordinate, id }: { coordinate: { latitude: number; longitude: number }; id: number }) => {
-//     return (
-//       <Marker key={id} coordinate={coordinate} tracksViewChanges={false}>
-//         <View
-//           style={{
-//             width: 10,
-//             height: 10,
-//             backgroundColor: "red",
-//           }}
-//         />
-//       </Marker>
-//     );
-//   }
-// );
-
 export default function App() {
   const [showMarkers, setShowMarkers] = useState(false);
 
