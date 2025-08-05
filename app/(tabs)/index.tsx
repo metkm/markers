@@ -12,7 +12,7 @@ const CustomMarker = () => {
         longitude: 0,
       }}
     >
-      <Text>Test</Text>
+      <View style={{ width: 20, height: 20, backgroundColor: 'red' }} />
     </Marker>
   );
 };
@@ -42,7 +42,7 @@ const ToggleMarkers = () => {
 
 export const Home = () => {
   return (
-    <View style={[styles.container]}>
+    <View style={styles.container}>
       <ToggleMarkers />
 
       <MapView style={{ flex: 1 }}>
