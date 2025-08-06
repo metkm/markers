@@ -2,6 +2,14 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useMarkerStore } from "../../store/markers";
 
+const markers = [...Array(50).keys()].map((item) => ({
+  id: item,
+  coordinate: {
+    latitude: 38 + item / 4,
+    longitude: 16,
+  },
+}));
+
 const CustomMarker = () => {
   return (
     <Marker
@@ -12,33 +20,40 @@ const CustomMarker = () => {
         longitude: 0,
       }}
     >
-      <View style={{ width: 20, height: 20, backgroundColor: 'red' }} />
+      <View style={{ width: 20, height: 20, backgroundColor: "red" }} />
     </Marker>
   );
 };
 
 const Markers = () => {
-  const showMarkers = useMarkerStore((state) => state.show)
+  const showMarkers = useMarkerStore((state) => state.show);
 
   if (!showMarkers) {
-    return
+    return;
   }
 
   return (
-    <CustomMarker />
-  )
-}
+    <>
+      {markers.map((marker) => (
+        <Marker key={marker.id} coordinate={marker.coordinate} tracksViewChanges={false}>
+          <View
+            style={{
+              width: 10,
+              height: 10,
+              backgroundColor: "red",
+            }}
+          />
+        </Marker>
+      ))}
+    </>
+  );
+};
 
 const ToggleMarkers = () => {
-  const toggleMarkers = useMarkerStore((state) => state.toggleShow)
+  const toggleMarkers = useMarkerStore((state) => state.toggleShow);
 
-  return (
-    <Button
-      title="toggle"
-      onPress={toggleMarkers}
-    />
-  )
-}
+  return <Button title="toggle" onPress={toggleMarkers} />;
+};
 
 export const Home = () => {
   return (
@@ -49,8 +64,8 @@ export const Home = () => {
         <Markers />
       </MapView>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -58,5 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-
-export default Home
+export default Home;
